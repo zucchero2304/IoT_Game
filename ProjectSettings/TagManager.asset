@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyVirus
   - Enemy
+  - GoodStuff
+  - Pill
+  - Vaccine
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,7 @@ public class GameUiManager : MonoBehaviour
     public Sprite[] scoreDigits;
     string scoreString;
     public GameObject gameOverMenu;
+    public AudioManager audioManager;
 
     Image digit1;
     Image digit2;
@@ -27,8 +28,10 @@ public class GameUiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        audioManager.gameBackgroundMusic.Play();
         gameOver = false;
-        score = 1;
+        score = 0;
         digit1 = GameObject.Find("digit1").GetComponent<Image>();
         digit2 = GameObject.Find("digit2").GetComponent<Image>();
         digit3 = GameObject.Find("digit3").GetComponent<Image>();
@@ -46,34 +49,33 @@ public class GameUiManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreString = score.ToString();
+        
     }
 
     void setScoreDigits()
     {
+        scoreString = score.ToString();
+        Debug.Log("Score is: " + scoreString);
         //set first (rightmost) digit
         digitFourNo = (int)Char.GetNumericValue(scoreString[0]);
 
-        if (score > 10) //set second
+        if (score > 9) //set second
         {
-            int digitFourTemp = digitFourNo;
-            digitThreeNo = (int)Char.GetNumericValue(scoreString[1]);
-            digitFourNo = digitThreeNo;
-            digitThreeNo = digitFourTemp;
+            digitThreeNo = digitFourNo;
+            digitFourNo = (int)Char.GetNumericValue(scoreString[1]);
 
-            if (score > 100) //third
+            if (score > 99) //third
             {
-                int digitThreeTemp = digitThreeNo;
-                digitTwoNo = (int)Char.GetNumericValue(scoreString[2]);
-                digitThreeNo = digitTwoNo;
-                digitTwoNo = digitThreeTemp;
+                digitTwoNo = digitThreeNo;
+                digitThreeNo = (int)Char.GetNumericValue(scoreString[1]);
+                digitFourNo = (int)Char.GetNumericValue(scoreString[2]);
 
-                if (score > 1000) //4th
+                if (score > 999) //4th
                 {
-                    int digitTwoTemp = digitTwoNo;
-                    digitOneNo = (int)Char.GetNumericValue(scoreString[3]);
-                    digitTwoNo = digitOneNo;
-                    digitOneNo = digitTwoTemp;
+                    digitOneNo = digitTwoNo;
+                    digitTwoNo = (int)Char.GetNumericValue(scoreString[1]);
+                    digitThreeNo = (int)Char.GetNumericValue(scoreString[2]);
+                    digitFourNo = (int)Char.GetNumericValue(scoreString[3]);
                 }
             }
         }
@@ -94,9 +96,24 @@ public class GameUiManager : MonoBehaviour
         setScoreDigits();
     }
 
-    public int GetScore()
+    public void AddPillBonus()
     {
-        return score;
+        if (!gameOver)
+        {
+            score += 3;
+        }
+
+        setScoreDigits();
+    }
+
+    public void AddVaccineBonus()
+    {
+        if (!gameOver)
+        {
+            score += 5;
+        }
+
+        setScoreDigits();
     }
 
     public void GameOverActivated()
@@ -107,17 +124,20 @@ public class GameUiManager : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0; //pauses the game   
+        Time.timeScale = 0; //pauses the game  
+        audioManager.gameBackgroundMusic.Pause();
     }
 
     public void Resume()
     {
-        Time.timeScale = 1; //resumes the game   
+        Time.timeScale = 1; //resumes the game 
+        audioManager.gameBackgroundMusic.Play();
     }
 
     public void Replay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //load again same scene
+        Resume();
     }
 
     public void GoToMenu()

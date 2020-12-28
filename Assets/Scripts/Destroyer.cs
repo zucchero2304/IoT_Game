@@ -16,11 +16,11 @@ public class Destroyer : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D col) //col is a variable which holds the object with which the collision happens
+    void OnCollisionEnter2D(Collision2D collision) //col is a variable which holds the object with which the collision happens
     {
-        if(col.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Pill" || collision.gameObject.tag == "Vaccine")
         {
-            Destroy(col.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

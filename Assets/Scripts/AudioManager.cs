@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource gameOverScream;
+    public AudioSource mainMenuMusic;
+    public AudioSource gameBackgroundMusic;
+    public AudioSource screamSound;
+    public AudioSource collectSound;
+
 
     // Start is called before the first frame update
     void Start()
