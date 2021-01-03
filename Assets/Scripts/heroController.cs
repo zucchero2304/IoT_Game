@@ -7,7 +7,7 @@ public class heroController : MonoBehaviour
 
     public float heroSpeed;
     float maxPos = 2.3f; 
-    Vector3 position; //temporary position of the car
+    Vector3 position; 
     public GameUiManager ui;
     public AudioManager audioManager;
 
@@ -33,7 +33,7 @@ public class heroController : MonoBehaviour
     {
         steeringMethod = PlayerPrefs.GetString("SteeringMethod");
 
-        position = transform.position; //assign the current position of the car
+        position = transform.position; 
 
         if (currentPlatformAndroid)
         {
@@ -51,7 +51,6 @@ public class heroController : MonoBehaviour
         if (currentPlatformAndroid) 
         { //android 
 
-            //maybe we could somehow ommit checking conditions all the time here?
             if (steeringMethod == "touch")
             {
                 TouchMove();
@@ -73,9 +72,8 @@ public class heroController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D col) //called when this game object collides with a different one
+    void OnCollisionEnter2D(Collision2D col)
     {
-        //check if we're colliding with enemy cars
         if (col.gameObject.tag == "Enemy")
         {
             audioManager.screamSound.Play();
