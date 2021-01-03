@@ -18,7 +18,7 @@ public class ScoreCounter : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // Mark Box Collider as "is trigger" to make objects pass through it
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

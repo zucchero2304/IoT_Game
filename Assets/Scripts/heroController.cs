@@ -6,7 +6,7 @@ public class heroController : MonoBehaviour
 {
 
     public float heroSpeed;
-    float maxPos = 2.3f; //f signifies float
+    float maxPos = 2.3f; 
     Vector3 position; //temporary position of the car
     public GameUiManager ui;
     public AudioManager audioManager;
@@ -49,7 +49,7 @@ public class heroController : MonoBehaviour
     void Update()
     {
         if (currentPlatformAndroid) 
-        { //android code
+        { //android 
 
             //maybe we could somehow ommit checking conditions all the time here?
             if (steeringMethod == "touch")
@@ -62,8 +62,8 @@ public class heroController : MonoBehaviour
             }
         }
         else
-        { //windows code
-            //get input from left and right arrow keys
+        { //windows 
+            // input from left and right arrow keys
             position.x += Input.GetAxis("Horizontal") * heroSpeed * Time.deltaTime;
         }
 
@@ -84,7 +84,7 @@ public class heroController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // Mark Box Collider as "is trigger" to make objects pass through it
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.tag == "Pill")
         {

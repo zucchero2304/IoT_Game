@@ -43,7 +43,6 @@ public class GameUiManager : MonoBehaviour
         digit4.GetComponent<Image>().sprite = scoreDigits[0];
 
 
-      //  InvokeRepeating("scoreUpdate", 1.0f, 0.5f); //calls some function many times every some amount time
     }
 
     // Update is called once per frame
@@ -70,7 +69,7 @@ public class GameUiManager : MonoBehaviour
                 digitThreeNo = (int)Char.GetNumericValue(scoreString[1]);
                 digitFourNo = (int)Char.GetNumericValue(scoreString[2]);
 
-                if (score > 999) //4th
+                if (score > 999) //4th digit
                 {
                     digitOneNo = digitTwoNo;
                     digitTwoNo = (int)Char.GetNumericValue(scoreString[1]);
